@@ -1,4 +1,5 @@
 import React from 'react'
+import imageNotFound from '../image-not-found.png'
 
 function Product({ product }) {
 
@@ -17,10 +18,15 @@ function Product({ product }) {
     }
   }
 
+  function addDefaultSrc(event) {
+    event.target.src = imageNotFound
+  }
+
+
   return (
     <div className='product-container'>
       <div className='product-image-container'>
-        <img className='product-image' src={product.thumbnailImageUrl} alt='' />
+        <img className='product-image' src={product.thumbnailImageUrl} alt='' onError={addDefaultSrc}  />
       </div>
       <div className='product-details'>
         <p>{product.name}</p>
