@@ -7,6 +7,7 @@ function ProductsList({ productsList }) {
       {productsList && productsList.map((product, index) => (
         <Product product={product} key={index} />
       ))}
+      {productsList.length === 0 && <h1 style={{ textAlign: "center" }}>No products found to display!</h1>}
     </div>
   )
 }
