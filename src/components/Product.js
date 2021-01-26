@@ -18,6 +18,8 @@ function Product({ product }) {
     }
   }
 
+  // I believe this could possibly lead to an infinite callback if the fallback image also fails to load
+  // to solve this I could use a errored state that is set when error occurs
   function addDefaultSrc(event) {
     event.target.src = imageNotFound
   }
