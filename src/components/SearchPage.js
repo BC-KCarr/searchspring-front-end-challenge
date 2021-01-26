@@ -8,7 +8,7 @@ function SearchPage() {
   const [error, setError] = useState(false)
 
   const fetchData = useCallback(() => {
-    fetch('http://api.searchspring.net/api/search/search.json?siteId=scmq7n&resultsFormat=native&page=1')
+    fetch(`http://api.searchspring.net/api/search/search.json?siteId=scmq7n&resultsFormat=native&page=1&q=${input}`)
       .then(res => res.json())
       .then(res => {
         console.log(res)
@@ -18,7 +18,7 @@ function SearchPage() {
         setError(true)
         console.log(err)
       })
-  }, [])
+  }, [input])
 
   useEffect(() => {
     fetchData()
@@ -30,7 +30,7 @@ function SearchPage() {
   }
 
   return (
-    <div>
+    <div className='container'>
       <SearchBar keyword={input} setKeyword={handleChange} />
       <ProductsList productsList={responseData} />
     </div>

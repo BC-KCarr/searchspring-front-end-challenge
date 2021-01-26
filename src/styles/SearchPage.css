@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-table {
+  display: flex;
+  flex-flow: row wrap;
+  max-width: 900px;
+}
+
+
+
+

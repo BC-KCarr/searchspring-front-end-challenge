@@ -3,7 +3,7 @@ import Product from './Product'
 
 function ProductsList({ productsList }) {
   return (
-    <div>
+    <div className='product-table'>
       {productsList && productsList.map((product, index) => (
         <Product product={product} key={index} />
       ))}
