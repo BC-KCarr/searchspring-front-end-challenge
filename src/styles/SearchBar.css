@@ -1,3 +1,9 @@
+.wrapper {
+  display:inline-block;
+  position:relative;
+  width: 100%;
+}
+
 .searchBar {
   width: 100%;
   border: none;
@@ -5,4 +11,20 @@
   height: 20px;
   padding: 12px;
   margin-bottom: 10px;
+}
+
+input,
+button {
+    background-color:transparent;
+    border:0;
+}
+
+button {
+  position:absolute;
+  right:0;
+  top:0;
+}
+
+input {
+  padding-right:30px; /* button padding */
 }

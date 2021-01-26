@@ -1,13 +1,13 @@
 import React from 'react'
 
 function Product({ product }) {
-  console.log(product)
+
   function checkPrice() {
     if (parseInt(product.msrp) > parseInt(product.price)) {
       return (
         <div>
           <span className='product-price'>{`$${parseInt(product.price).toFixed(2)}`}</span>
-          <span className='sales-price' style={{textDecoration: 'line-through'}}>{`$${parseInt(product.msrp).toFixed(2)}`}</span>
+          <span className='sales-price' style={{ textDecoration: 'line-through' }}>{`$${parseInt(product.msrp).toFixed(2)}`}</span>
         </div>
       )
     } else {
@@ -15,8 +15,8 @@ function Product({ product }) {
         <span className='product-price'>{`$${parseInt(product.price).toFixed(2)}`}</span>
       )
     }
-
   }
+
   return (
     <div className='product-container'>
       <div className='product-image-container'>

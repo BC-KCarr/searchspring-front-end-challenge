@@ -5,16 +5,16 @@ import Pagination from '@material-ui/lab/Pagination'
 
 function SearchPage() {
   const [input, setInput] = useState('')
-  const [responseData, setResponseData] = useState([])
+  const [query, setQuery] = useState('')
   const [error, setError] = useState(false)
   const [page, setPage] = useState(1)
+  const [responseData, setResponseData] = useState([])
   const [totalPages, setTotalPages] = useState(0)
 
   const fetchData = useCallback(() => {
-    fetch(`http://api.searchspring.net/api/search/search.json?siteId=scmq7n&resultsFormat=native&page=${page}&q=${input}`)
+    fetch(`http://api.searchspring.net/api/search/search.json?siteId=scmq7n&resultsFormat=native&page=${page}&q=${query}`)
       .then(res => res.json())
       .then(res => {
-        console.log(res)
         setResponseData(res.results)
         setTotalPages(res.pagination.totalPages)
       })
@@ -22,15 +22,20 @@ function SearchPage() {
         setError(true)
         console.log(err)
       })
-  }, [input, page])
+  }, [query, page])
 
   useEffect(() => {
     fetchData()
   }, [fetchData])
 
 
-  function handleChange(input) {
-    setInput(input)
+  function handleChange(value) {
+    setInput(value)
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    setQuery(input)
   }
 
   function handlePageChange(event, value) {
@@ -39,8 +44,9 @@ function SearchPage() {
 
   return (
     <div className='container'>
-      <SearchBar keyword={input} setKeyword={handleChange} />
+      <SearchBar keyword={input} setKeyword={handleChange} handleSubmit={handleSubmit} />
       <Pagination count={totalPages} page={page} onChange={handlePageChange} />
+      {error && <h1 style={{textAlign: "center", color: "red" }}>Error loading data!</h1>}
       <ProductsList productsList={responseData} />
       <Pagination count={totalPages} page={page} onChange={handlePageChange} />
     </div>
