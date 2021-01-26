@@ -19,10 +19,20 @@ button {
     border:0;
 }
 
+input:focus {
+  border-bottom: solid 2px rgb(84, 47, 216);
+  outline: none;
+}
+
+button:focus {
+  outline: none;
+}
+
 button {
   position:absolute;
   right:0;
   top:0;
+  cursor: pointer;
 }
 
 input {
