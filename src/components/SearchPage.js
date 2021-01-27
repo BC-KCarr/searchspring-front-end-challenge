@@ -35,7 +35,6 @@ function SearchPage() {
       .then(res => res.json())
       .then(res => {
         setResponseData(res.results)
-        console.log(res)
         setTotalPages(res.pagination.totalPages)
         setTotalResults(res.pagination.totalResults)
         setBegin(res.pagination.begin)
@@ -77,18 +76,22 @@ function SearchPage() {
       <div className='nav'></div>
       <div className='top-pagination-container'>
         <span className='results-numbers'>{`SHOWING ${begin}-${end} OF ${totalResults} RESULTS`}</span>
-        <Pagination 
-        count={totalPages}
-        page={page} 
-        onChange={handlePageChange}
-        className={classes.root}
-        renderItem={(item) => <PaginationItem {...item} classes={{selected: classes.selected}} /> } />
+        <Pagination
+          count={totalPages}
+          page={page}
+          onChange={handlePageChange}
+          className={classes.root}
+          renderItem={(item) => <PaginationItem {...item} classes={{ selected: classes.selected }} />} />
       </div>
       {error && <h1 style={{ textAlign: "center", color: "red" }}>Error loading data!</h1>}
       <ProductsList productsList={responseData} />
       <div className='bottom-pagination-container'>
-
-        <Pagination count={totalPages} page={page} onChange={handlePageChange} color='#1a0e77' />
+        <Pagination
+          count={totalPages}
+          page={page}
+          onChange={handlePageChange}
+          className={classes.root}
+          renderItem={(item) => <PaginationItem {...item} classes={{ selected: classes.selected }} />} />
       </div>
     </div>
   )
