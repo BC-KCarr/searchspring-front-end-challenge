@@ -6,7 +6,7 @@ function SearchBar({ keyword, setKeyword, handleSubmit }) {
     <form className='wrapper' onSubmit={(e) => handleSubmit(e)}>
       <input value={keyword} placeholder="Search for Brand, Color, Size..." onChange={(e) => setKeyword(e.target.value)} className="searchBar" />
       <button type="submit" value="Submit">
-        <SearchIcon />
+        <SearchIcon style={{color: '#1a0e77'}}/>
       </button>
     </form>
   )

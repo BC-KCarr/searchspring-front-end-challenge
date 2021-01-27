@@ -1,5 +1,5 @@
 import React from 'react'
-import imageNotFound from '../image-not-found.png'
+import imageNotFound from '../images/image-not-found.png'
 
 function Product({ product }) {
 
@@ -7,7 +7,7 @@ function Product({ product }) {
     if (parseInt(product.msrp) > parseInt(product.price)) {
       return (
         <div>
-          <span className='product-price'>{`$${parseInt(product.price).toFixed(2)}`}</span>
+          <span className='product-price' style={{ color: '#1a0e77', fontWeight: '800' }}>{`$${parseInt(product.price).toFixed(2)}`}</span>
           <span className='sales-price' style={{ textDecoration: 'line-through' }}>{`$${parseInt(product.msrp).toFixed(2)}`}</span>
         </div>
       )
