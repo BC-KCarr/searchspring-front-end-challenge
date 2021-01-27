@@ -93,6 +93,9 @@ function SearchPage() {
           className={classes.root}
           renderItem={(item) => <PaginationItem {...item} classes={{ selected: classes.selected }} />} />
       </div>
+      <footer className='footer'>
+        <p>All rights reserved</p>
+      </footer>
     </div>
   )
 }
