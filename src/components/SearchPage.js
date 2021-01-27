@@ -13,8 +13,7 @@ const useStyles = makeStyles((theme) => ({
       color: 'white'
     }
   }
-})
-)
+}))
 
 function SearchPage() {
   const [input, setInput] = useState('')
@@ -26,14 +25,17 @@ function SearchPage() {
   const [begin, setBegin] = useState(0)
   const [end, setEnd] = useState(0)
   const [totalResults, setTotalResults] = useState(0)
+  const [loading, setLoading] = useState(false)
 
   const classes = useStyles();
 
 
   const fetchData = useCallback(() => {
+    setLoading(true)
     fetch(`http://api.searchspring.net/api/search/search.json?siteId=scmq7n&resultsFormat=native&page=${page}&q=${query}`)
       .then(res => res.json())
       .then(res => {
+        setLoading(false)
         setResponseData(res.results)
         setTotalPages(res.pagination.totalPages)
         setTotalResults(res.pagination.totalResults)
@@ -42,6 +44,7 @@ function SearchPage() {
       })
       .catch((err) => {
         setError(true)
+        setLoading(false)
         console.log(err)
       })
   }, [query, page])
@@ -67,6 +70,7 @@ function SearchPage() {
 
   return (
     <div className='container'>
+      <main className='main'>
       <header className='header'>
         <div className='logo-container'>
           <img src={logo} alt='logo' />
@@ -74,25 +78,34 @@ function SearchPage() {
         <SearchBar keyword={input} setKeyword={handleChange} handleSubmit={handleSubmit} />
       </header>
       <div className='nav'></div>
-      <div className='top-pagination-container'>
-        <span className='results-numbers'>{`SHOWING ${begin}-${end} OF ${totalResults} RESULTS`}</span>
-        <Pagination
-          count={totalPages}
-          page={page}
-          onChange={handlePageChange}
-          className={classes.root}
-          renderItem={(item) => <PaginationItem {...item} classes={{ selected: classes.selected }} />} />
-      </div>
-      {error && <h1 style={{ textAlign: "center", color: "red" }}>Error loading data!</h1>}
-      <ProductsList productsList={responseData} />
-      <div className='bottom-pagination-container'>
-        <Pagination
-          count={totalPages}
-          page={page}
-          onChange={handlePageChange}
-          className={classes.root}
-          renderItem={(item) => <PaginationItem {...item} classes={{ selected: classes.selected }} />} />
-      </div>
+      {loading ? (
+        <div style={{textAlign: 'center'}}>
+          <h1>Loading...</h1>
+        </div>
+      ) : (
+          <>
+            <div className='top-pagination-container'>
+              <span className='results-numbers'>{`SHOWING ${begin}-${end} OF ${totalResults} RESULTS`}</span>
+              <Pagination
+                count={totalPages}
+                page={page}
+                onChange={handlePageChange}
+                className={classes.root}
+                renderItem={(item) => <PaginationItem {...item} classes={{ selected: classes.selected }} />} />
+            </div>
+            {error && <h1 style={{ textAlign: "center", color: "red" }}>Error loading data!</h1>}
+            <ProductsList productsList={responseData} />
+            <div className='bottom-pagination-container'>
+              <Pagination
+                count={totalPages}
+                page={page}
+                onChange={handlePageChange}
+                className={classes.root}
+                renderItem={(item) => <PaginationItem {...item} classes={{ selected: classes.selected }} />} />
+            </div>
+          </>
+        )}
+      </main>
       <footer className='footer'>
         <p>All rights reserved</p>
       </footer>
