@@ -84,6 +84,15 @@ function SearchPage() {
         </div>
       ) : (
           <>
+          <h1 className='new-arrivals'>{query ? '' : 'NEW ARRIVALS!'}</h1>
+            <div className='home'>
+              <span className='home-text' onClick={() => {
+                setQuery('')
+                setPage(1)
+              }}>Home</span>
+              <span className='search-results-text' id='chevron'>&rsaquo;</span>
+              <span className='search-results-text'>{query ? 'Search Results' : 'New Arrivals'}</span>
+            </div>
             <div className='top-pagination-container'>
               <span className='results-numbers'>{`SHOWING ${begin}-${end} OF ${totalResults} RESULTS`}</span>
               <Pagination

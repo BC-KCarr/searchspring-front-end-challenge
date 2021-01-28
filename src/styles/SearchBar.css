@@ -24,6 +24,10 @@ input:focus {
   outline: none;
 }
 
+::-webkit-input-placeholder {
+  color: #1a0e77;
+}
+
 button:focus {
   outline: none;
 }
@@ -36,5 +40,5 @@ button {
 }
 
 input {
-  padding-right:30px; /* button padding */
+  padding-right:30px; 
 }
