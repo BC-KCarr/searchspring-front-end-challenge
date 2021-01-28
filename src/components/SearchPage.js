@@ -36,7 +36,6 @@ function SearchPage() {
       .then(res => res.json())
       .then(res => {
         setLoading(false)
-        console.log(res)
         setResponseData(res.results)
         setTotalPages(res.pagination.totalPages)
         setTotalResults(res.pagination.totalResults)
@@ -74,7 +73,7 @@ function SearchPage() {
       return (
         <h1 style={{ textAlign: "center", color: "red" }}>Error loading data!</h1>
       )
-    } 
+    }
     if (loading) {
       return (
         <div style={{ textAlign: 'center' }}>
@@ -102,7 +101,6 @@ function SearchPage() {
               className={classes.root}
               renderItem={(item) => <PaginationItem {...item} classes={{ selected: classes.selected }} />} />
           </div>
-          {error && responseData ? <h1 style={{ textAlign: "center", color: "red" }}>Error loading data!</h1> : ''}
           <ProductsList productsList={responseData} />
           <div className='bottom-pagination-container'>
             <Pagination
