@@ -62,6 +62,7 @@ function SearchPage() {
     event.preventDefault()
     setQuery(input)
     setInput('')
+    setPage(1)
   }
 
   function handlePageChange(event, value) {
